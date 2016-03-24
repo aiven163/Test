@@ -169,14 +169,20 @@ public class NavigationTab extends LinearLayout implements View.OnClickListener 
             if (mOnSelectedChangeListener != null) {
                 mOnSelectedChangeListener.onSelectedChanged(index);
             }
-            unSelected(mCurrentIndex);
-            selected(index);
-            updateFragment(index);
-            mCurrentIndex = index;
-            mIsComingFromRestoredState = false;
         }
+        unSelected(mCurrentIndex);
+        selected(index);
+        updateFragment(index);
+        mCurrentIndex = index;
+        mIsComingFromRestoredState = false;
+
     }
 
+    @Override
+    protected void detachAllViewsFromParent() {
+        super.detachAllViewsFromParent();
+        mCurrentIndex = -1;
+    }
 
     /**
      * 清除上一次最后一个选中状态
@@ -268,10 +274,10 @@ public class NavigationTab extends LinearLayout implements View.OnClickListener 
      * @param outState
      */
     public void onSaveInstanceState(Bundle outState) {
-        outState.putInt(STATE_CURRENT_SELECTED_TAB, mCurrentIndex);
         if (mFragmentManager != null
                 && mFragmentContainerId != 0
                 && tabItemViews != null) {
+            outState.putInt(STATE_CURRENT_SELECTED_TAB, mCurrentIndex);
             TabItemView view = tabItemViews.get(tabItemViews.keyAt(mCurrentIndex));
             if (view != null && view.getTabItem() != null) {
                 Fragment bottomBarFragment = view.getTabItem().fragment;

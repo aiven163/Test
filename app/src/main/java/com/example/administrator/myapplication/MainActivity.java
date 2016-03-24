@@ -53,6 +53,6 @@ public class MainActivity extends AppCompatActivity implements NavigationTab.OnS
 
     @Override
     public void onSelectedChanged(int index) {
-        Toast.makeText(this, String.valueOf(index), Toast.LENGTH_LONG).show();
+        Toast.makeText(this, String.valueOf(index), Toast.LENGTH_SHORT).show();
     }
 }

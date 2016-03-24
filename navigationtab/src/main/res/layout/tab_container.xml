@@ -15,7 +15,7 @@
         android:id="@+id/tabContainer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#303F9F"
+        android:background="#851F9F"
         android:gravity="center"
         android:orientation="horizontal" />
 
